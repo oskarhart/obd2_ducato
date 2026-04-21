@@ -1,3 +1,5 @@
+**!!!Not fully tested!!!**
+
 # OBD2 Ducato - Home Assistant Integration
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
@@ -52,14 +54,12 @@ A Home Assistant custom integration for reading OBD2 data from a **Fiat Ducato 2
 3. In HA go to **Settings → Integrations → Add Integration**
 4. Search for **OBD2 Ducato**
 5. Enter the Bluetooth MAC address of your adapter
-6. The integration will scan, pair, and connect automatically
 
 ## Finding Your Adapter's MAC Address
 
 You can find the MAC address by:
 - Checking the label on the adapter
 - Using a Bluetooth scanner app on your phone (e.g. "BLE Scanner")
-- The setup form will scan and show nearby devices automatically
 
 ## Hardware Tested
 
