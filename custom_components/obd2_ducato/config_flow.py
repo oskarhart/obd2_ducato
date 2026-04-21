@@ -10,6 +10,14 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
+from homeassistant.helpers.selector import (
+    NumberSelector,
+    NumberSelectorConfig,
+    NumberSelectorMode,
+    TextSelector,
+    TextSelectorConfig,
+    TextSelectorType,
+)
 
 from .const import (
     DOMAIN,
@@ -34,12 +42,14 @@ def _validate_mac(mac: str) -> str:
 
 STEP_USER_SCHEMA = vol.Schema(
     {
-        vol.Required(CONF_MAC_ADDRESS): str,
-        vol.Optional(CONF_RFCOMM_PORT, default=DEFAULT_RFCOMM_PORT): vol.All(
-            vol.Coerce(int), vol.Range(min=0, max=9)
+        vol.Required(CONF_MAC_ADDRESS): TextSelector(
+            TextSelectorConfig(type=TextSelectorType.TEXT)
         ),
-        vol.Optional(CONF_RFCOMM_CHANNEL, default=DEFAULT_RFCOMM_CHANNEL): vol.All(
-            vol.Coerce(int), vol.Range(min=1, max=30)
+        vol.Optional(CONF_RFCOMM_PORT, default=DEFAULT_RFCOMM_PORT): NumberSelector(
+            NumberSelectorConfig(min=0, max=9, step=1, mode=NumberSelectorMode.BOX)
+        ),
+        vol.Optional(CONF_RFCOMM_CHANNEL, default=DEFAULT_RFCOMM_CHANNEL): NumberSelector(
+            NumberSelectorConfig(min=1, max=30, step=1, mode=NumberSelectorMode.BOX)
         ),
     }
 )
@@ -113,13 +123,17 @@ class OBD2DucatoOptionsFlow(config_entries.OptionsFlow):
                     default=self.config_entry.data.get(
                         CONF_RFCOMM_PORT, DEFAULT_RFCOMM_PORT
                     ),
-                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=9)),
+                ): NumberSelector(
+                    NumberSelectorConfig(min=0, max=9, step=1, mode=NumberSelectorMode.BOX)
+                ),
                 vol.Optional(
                     CONF_RFCOMM_CHANNEL,
                     default=self.config_entry.data.get(
                         CONF_RFCOMM_CHANNEL, DEFAULT_RFCOMM_CHANNEL
                     ),
-                ): vol.All(vol.Coerce(int), vol.Range(min=1, max=30)),
+                ): NumberSelector(
+                    NumberSelectorConfig(min=1, max=30, step=1, mode=NumberSelectorMode.BOX)
+                ),
             }
         )
 
