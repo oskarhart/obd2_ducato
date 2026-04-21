@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "OBD2 Ducato Setup",
-        "description": "Enter the MAC address of your KONNWEI KW905 OBD2 adapter.\n\nNearby Bluetooth devices found:\n{devices}",
+        "description": "Enter the Bluetooth MAC address of your KONNWEI KW905 OBD2 adapter. The MAC address is printed on the adapter label, or you can find it using a Bluetooth scanner app on your phone.",
         "data": {
           "mac_address": "Bluetooth MAC Address (XX:XX:XX:XX:XX:XX)",
           "rfcomm_port": "RFCOMM Port (default: 0)",
@@ -13,7 +13,7 @@
     },
     "error": {
       "invalid_mac": "Invalid MAC address. Use format XX:XX:XX:XX:XX:XX",
-      "bt_connect_failed": "Could not connect to the OBD2 adapter. Make sure it is plugged in, the vehicle is nearby, and Bluetooth is enabled."
+      "bt_connect_failed": "Could not connect to the OBD2 adapter. Make sure it is plugged in and Bluetooth is enabled."
     },
     "abort": {
       "already_configured": "This OBD2 adapter is already configured."
